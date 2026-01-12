@@ -1,0 +1,211 @@
+:root {
+    --service-text-color: #fff;
+    --service-tag-color: #fff;
+  --bg-primary: linear-gradient(135deg, #fef5f7 0%, #fff8fa 50%, #fef6f8 100%);
+  --bg-primary-rgb: 255, 248, 250;
+  --bg-secondary: #fef5f7;
+  --text-primary: #1a1a1a;
+  --text-secondary: #666666;
+  --border-color: #fce4ea;
+  --primary-color: #F49BAB;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[data-theme="dark"] {
+    --service-text-color: #fff;
+    --service-tag-color: #fff;
+  --bg-primary: linear-gradient(135deg, #2a1f22 0%, #2e2327 50%, #33272b 100%);
+  --bg-primary-rgb: 46, 35, 39;
+  --bg-secondary: #33272b;
+  --text-primary: #ffffff;
+  --text-secondary: #a0a0a0;
+  --border-color: #3d3135;
+  --primary-color: #F49BAB;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-primary);
+  background-attachment: fixed;
+  color: var(--text-primary);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23F49BAB" opacity="0.6" stroke="%23F49BAB" stroke-width="2"/></svg>') 12 12, auto;
+  overflow-x: hidden;
+  width: 100%;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+button, a {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8" fill="%23F49BAB" opacity="0.8" stroke="%23F49BAB" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="%23F49BAB"/></svg>') 12 12, pointer;
+  transition: all 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Loading bar styles */
+.loading-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+  z-index: 9999;
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.loading-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  width: min(90vw, 500px);
+}
+
+.loading-character {
+  flex-shrink: 0;
+  animation: slide-with-bar 3s ease-in-out forwards;
+}
+
+.loading-character img {
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+  display: block;
+}
+
+@keyframes slide-with-bar {
+  0% {
+    transform: translateX(-120px);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(120px);
+    opacity: 0.5;
+  }
+}
+
+.loading-track {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.06);
+  overflow: hidden;
+  border-radius: 999px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+}
+
+.loading-bar {
+  position: absolute;
+  left: -30%;
+  height: 100%;
+  width: 30%;
+  background: linear-gradient(90deg, #111, #000);
+  border-radius: inherit;
+  animation: loading-slide 1s ease-in-out infinite;
+}
+
+@keyframes loading-slide {
+  0% {
+    left: -30%;
+    opacity: 0.3;
+  }
+  50% {
+    left: 50%;
+    opacity: 1;
+  }
+  100% {
+    left: 110%;
+    opacity: 0.3;
+  }
+}
+
+/* Offset anchor jumps for fixed header and avoid sideways scroll */
+#about, #contact {
+  scroll-margin-top: 110px; /* approx fixed header height + spacing */
+}
+
+@media (max-width: 768px) {
+  #about, #contact, #experience, #projects, #skills {
+    scroll-margin-top: 130px; /* larger on mobile for smaller header */
+  }
+
+  .loading-character {
+    width: 80%;
+    max-width: 200px;
+  }
+
+  .loading-wrapper {
+    width: min(95vw, 300px);
+  }
+}
+
+@media (max-width: 480px) {
+  #about, #contact, #experience, #projects, #skills {
+    scroll-margin-top: 150px;
+  }
+
+  .loading-overlay {
+    background: rgba(255, 255, 255, 0.98);
+  }
+
+  .loading-wrapper {
+    width: min(98vw, 280px);
+  }
+}
+
+/* Contact page overlay animation */
+@keyframes scrollShrinkRevealReturn {
+  0% {
+    transform: translate(-50%, -100%) scale(1);
+    opacity: 1;
+  }
+  25% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: translate(-50%, 0) scale(0.92);
+    opacity: 0.95;
+  }
+  80% {
+    transform: translate(-50%, 0) scale(1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-50%, -100%) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
