@@ -50,9 +50,7 @@ Feel free to customize the following:
 
 This portfolio can be easily deployed to:
 
-- **Vercel** (recommended for Next.js): `vercel deploy`
-- **Netlify**: Connect your git repository
-- **GitHub Pages**: Use static export with `next export`
+- **Vercel** https://portfolio-aksh-six.vercel.app/
 
 ## Tech Stack
 
